@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>StringProcessor.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">textparser</a> &gt; <a href="index.source.html" class="el_package">ua.lviv.iot.textparser.processors</a> &gt; <span class="el_source">StringProcessor.java</span></div><h1>StringProcessor.java</h1><pre class="source lang-java linenums">package ua.lviv.iot.textparser.processors;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class StringProcessor {
+
+    private String text;
+
+<span class="nc" id="L10">    public StringProcessor() { }</span>
+
+<span class="fc" id="L12">    public StringProcessor(final String textArg) {</span>
+<span class="fc" id="L13">        this.text = textArg;</span>
+<span class="fc" id="L14">    }</span>
+
+    public final String getText() {
+<span class="nc" id="L17">        return text;</span>
+    }
+
+    public final void setText(final String textArg) {
+<span class="nc" id="L21">        this.text = textArg;</span>
+<span class="nc" id="L22">    }</span>
+
+    public final void processText() {
+<span class="fc" id="L25">        String textAfterProcessing = &quot;&quot;;</span>
+<span class="fc" id="L26">        Pattern pattern = Pattern.compile(&quot;\\s+&quot;);</span>
+<span class="fc" id="L27">        String[] words = pattern.split(text);</span>
+<span class="fc bfc" id="L28" title="All 2 branches covered.">        for (String word: words) {</span>
+<span class="fc" id="L29">            Pattern patternForWords = Pattern.compile(&quot;[AaOrK]&quot;);</span>
+<span class="fc" id="L30">            Matcher matcher = patternForWords.matcher(word);</span>
+<span class="fc bfc" id="L31" title="All 2 branches covered.">            if (!matcher.find()) {</span>
+<span class="fc" id="L32">                textAfterProcessing = textAfterProcessing + word + &quot; &quot;;</span>
+            }
+        }
+<span class="fc" id="L35">        text = textAfterProcessing.trim();</span>
+<span class="fc" id="L36">    }</span>
+
+    public final String showResults() {
+<span class="fc bfc" id="L39" title="All 2 branches covered.">        if (text != &quot;&quot;) {</span>
+<span class="fc" id="L40">            return this.text;</span>
+        } else {
+<span class="fc" id="L42">            return &quot;Empty line&quot;;</span>
+        }
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>
